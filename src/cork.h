@@ -25,6 +25,8 @@
 // +-------------------------------------------------------------------------
 #pragma once
 
+#include "export.h"
+
 #ifndef uint
 typedef unsigned int uint;
 #endif
@@ -32,7 +34,7 @@ typedef unsigned int uint;
 // if a mesh is taken as input, the client must manage the memory
 // if a mesh is given as output, please use the provided
 // function to free the allocated memory.
-struct CorkTriMesh
+struct CORK_API CorkTriMesh
 {
     uint    n_triangles;
     uint    n_vertices;
@@ -40,7 +42,7 @@ struct CorkTriMesh
     float   *vertices;
 };
 
-void freeCorkTriMesh(CorkTriMesh *mesh);
+void CORK_API freeCorkTriMesh(CorkTriMesh *mesh);
 
 // the inputs to Boolean operations must be "solid":
 //  -   closed (aka. watertight; see comment at bottom)
@@ -50,25 +52,25 @@ void freeCorkTriMesh(CorkTriMesh *mesh);
 // orientation, the object is interpreted as its unbounded complement
 
 // This function will test whether or not a mesh is solid
-bool isSolid(CorkTriMesh mesh);
+bool CORK_API isSolid(CorkTriMesh mesh);
 
 // Boolean operations follow
 // result = A U B
-void computeUnion(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
+void CORK_API computeUnion(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
 
 // result = A - B
-void computeDifference(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
+void CORK_API computeDifference(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
 
 // result = A ^ B
-void computeIntersection(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
+void CORK_API computeIntersection(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
 
 // result = A XOR B
-void computeSymmetricDifference(
+void CORK_API computeSymmetricDifference(
                         CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
 
 // Not a Boolean operation, but related:
 //  No portion of either surface is deleted.  However, the
 //  curve of intersection between the two surfaces is made explicit,
 //  such that the two surfaces are now connected.
-void resolveIntersections(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
+void CORK_API resolveIntersections(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
 

@@ -25,6 +25,10 @@
 // +-------------------------------------------------------------------------
 #pragma once
 
+#ifdef _WIN32
+#include <math.h>
+#endif
+
 #include <cmath>
 #include <cstdlib>
 #include <ctime>

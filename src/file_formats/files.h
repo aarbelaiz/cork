@@ -27,6 +27,8 @@
 
 #include <string>
 
+#include "../export.h"
+
 //#include "triMesh.h"
 
 #include "rawMesh.h"
@@ -50,14 +52,14 @@ typedef RawMesh<FileVertex,FileTriangle> FileMesh;
 
 // generic filetype functions
 // these detect which filetype to use by inspecting the filename
-int readTriMesh(std::string filename, FileMesh *mesh);
-int writeTriMesh(std::string filename, FileMesh *mesh);
+int CORK_API readTriMesh(std::string filename, FileMesh *mesh);
+int CORK_API writeTriMesh(std::string filename, FileMesh *mesh);
 
 // specific filetype functions
-int readIFS(std::string filename, FileMesh *mesh);
-int writeIFS(std::string filename, FileMesh *mesh);
+int CORK_API readIFS(std::string filename, FileMesh *mesh);
+int CORK_API writeIFS(std::string filename, FileMesh *mesh);
 
-int readOFF(std::string filename, FileMesh *mesh);
-int writeOFF(std::string filename, FileMesh *mesh);
+int CORK_API readOFF(std::string filename, FileMesh *mesh);
+int CORK_API writeOFF(std::string filename, FileMesh *mesh);
 
 } // end namespace Files
