@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-set(PROJ_NAME cork)
+set(PROJ_NAME Cork)
 project(${PROJ_NAME})
 
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/)
@@ -20,9 +20,9 @@ set(LIBRARY_OUTPUT_PATH     ${PROJECT_BINARY_DIR}/lib CACHE PATH "" FORCE)
 
 # -- Required dependencies
 
-IF (NOT GMP_FOUND)
+if (NOT GMP_FOUND)
     find_package(GMP REQUIRED)
-ENDIF (NOT GMP_FOUND)
+endif (NOT GMP_FOUND)
 
 # -- Sources and headers
 
@@ -81,9 +81,18 @@ target_link_libraries(cork-bin PRIVATE cork)
 
 # -- Export
 
-INSTALL(TARGETS cork
+install(TARGETS cork
+	EXPORT cork_EXPORT
+	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib
 )
-INSTALL(FILES src/cork.h DESTINATION include)
+install(FILES src/cork.h DESTINATION include)
+
+# We export the targets first
+install(EXPORT cork_EXPORT DESTINATION cmake NAMESPACE ${PROJ_NAME}:: FILE ${PROJ_NAME}Targets.cmake)
+
+# We create a config file that makes use of the exported targets
+configure_file(${PROJ_NAME}Config.cmake.in ${PROJ_NAME}Config.cmake @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJ_NAME}Config.cmake DESTINATION cmake)
 
