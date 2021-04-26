@@ -248,35 +248,41 @@
 /*                                                                           */
 /*****************************************************************************/
 
+#ifdef  _WIN64
+#define INT __int64
+#else
+#define INT int
+#endif //  __WIN64
+
 struct triangulateio {
   REAL *pointlist;                                               /* In / out */
   REAL *pointattributelist;                                      /* In / out */
-  int *pointmarkerlist;                                          /* In / out */
-  int numberofpoints;                                            /* In / out */
-  int numberofpointattributes;                                   /* In / out */
+  INT *pointmarkerlist;                                          /* In / out */
+  INT numberofpoints;                                            /* In / out */
+  INT numberofpointattributes;                                   /* In / out */
 
-  int *trianglelist;                                             /* In / out */
+  INT *trianglelist;                                             /* In / out */
   REAL *triangleattributelist;                                   /* In / out */
   REAL *trianglearealist;                                         /* In only */
-  int *neighborlist;                                             /* Out only */
-  int numberoftriangles;                                         /* In / out */
-  int numberofcorners;                                           /* In / out */
-  int numberoftriangleattributes;                                /* In / out */
+  INT *neighborlist;                                             /* Out only */
+  INT numberoftriangles;                                         /* In / out */
+  INT numberofcorners;                                           /* In / out */
+  INT numberoftriangleattributes;                                /* In / out */
 
-  int *segmentlist;                                              /* In / out */
-  int *segmentmarkerlist;                                        /* In / out */
-  int numberofsegments;                                          /* In / out */
+  INT *segmentlist;                                              /* In / out */
+  INT *segmentmarkerlist;                                        /* In / out */
+  INT numberofsegments;                                          /* In / out */
 
   REAL *holelist;                        /* In / pointer to array copied out */
-  int numberofholes;                                      /* In / copied out */
+  INT numberofholes;                                      /* In / copied out */
 
   REAL *regionlist;                      /* In / pointer to array copied out */
-  int numberofregions;                                    /* In / copied out */
+  INT numberofregions;                                    /* In / copied out */
 
-  int *edgelist;                                                 /* Out only */
-  int *edgemarkerlist;            /* Not used with Voronoi diagram; out only */
+  INT *edgelist;                                                 /* Out only */
+  INT *edgemarkerlist;            /* Not used with Voronoi diagram; out only */
   REAL *normlist;                /* Used only with Voronoi diagram; out only */
-  int numberofedges;                                             /* Out only */
+  INT numberofedges;                                             /* Out only */
 };
 
 /*#ifdef ANSI_DECLARATORS*/
