@@ -3688,66 +3688,66 @@ struct otri *t;
   struct osub printsh;
   vertex printvertex;
 
-  printf("triangle x%lx with orientation %d:\n", (ULONG) t->tri,
+  printf("triangle x%llx with orientation %lld:\n", (ULONG) t->tri,
          t->orient);
   decode(t->tri[0], printtri);
   if (printtri.tri == m->dummytri) {
     printf("    [0] = Outer space\n");
   } else {
-    printf("    [0] = x%lx  %d\n", (ULONG) printtri.tri,
+    printf("    [0] = x%llx  %lld\n", (ULONG) printtri.tri,
            printtri.orient);
   }
   decode(t->tri[1], printtri);
   if (printtri.tri == m->dummytri) {
     printf("    [1] = Outer space\n");
   } else {
-    printf("    [1] = x%lx  %d\n", (ULONG) printtri.tri,
+    printf("    [1] = x%llx  %lld\n", (ULONG) printtri.tri,
            printtri.orient);
   }
   decode(t->tri[2], printtri);
   if (printtri.tri == m->dummytri) {
     printf("    [2] = Outer space\n");
   } else {
-    printf("    [2] = x%lx  %d\n", (ULONG) printtri.tri,
+    printf("    [2] = x%llx  %lld\n", (ULONG) printtri.tri,
            printtri.orient);
   }
 
   org(*t, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Origin[%d] = NULL\n", (t->orient + 1) % 3 + 3);
+    printf("    Origin[%lld] = NULL\n", (t->orient + 1) % 3 + 3);
   else
-    printf("    Origin[%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Origin[%lld] = x%llx  (%.12g, %.12g)\n",
            (t->orient + 1) % 3 + 3, (ULONG) printvertex,
            printvertex[0], printvertex[1]);
   dest(*t, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Dest  [%d] = NULL\n", (t->orient + 2) % 3 + 3);
+    printf("    Dest  [%lld] = NULL\n", (t->orient + 2) % 3 + 3);
   else
-    printf("    Dest  [%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Dest  [%lld] = x%llx  (%.12g, %.12g)\n",
            (t->orient + 2) % 3 + 3, (ULONG) printvertex,
            printvertex[0], printvertex[1]);
   apex(*t, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Apex  [%d] = NULL\n", t->orient + 3);
+    printf("    Apex  [%lld] = NULL\n", t->orient + 3);
   else
-    printf("    Apex  [%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Apex  [%lld] = x%llx  (%.12g, %.12g)\n",
            t->orient + 3, (ULONG) printvertex,
            printvertex[0], printvertex[1]);
 
   if (b->usesegments) {
     sdecode(t->tri[6], printsh);
     if (printsh.ss != m->dummysub) {
-      printf("    [6] = x%lx  %d\n", (ULONG) printsh.ss,
+      printf("    [6] = x%llx  %lld\n", (ULONG) printsh.ss,
              printsh.ssorient);
     }
     sdecode(t->tri[7], printsh);
     if (printsh.ss != m->dummysub) {
-      printf("    [7] = x%lx  %d\n", (ULONG) printsh.ss,
+      printf("    [7] = x%llx  %lld\n", (ULONG) printsh.ss,
              printsh.ssorient);
     }
     sdecode(t->tri[8], printsh);
     if (printsh.ss != m->dummysub) {
-      printf("    [8] = x%lx  %d\n", (ULONG) printsh.ss,
+      printf("    [8] = x%llx  %lld\n", (ULONG) printsh.ss,
              printsh.ssorient);
     }
   }
@@ -3782,35 +3782,35 @@ struct osub *s;
   struct otri printtri;
   vertex printvertex;
 
-  printf("subsegment x%lx with orientation %d and mark %d:\n",
+  printf("subsegment x%llx with orientation %lld and mark %lld:\n",
          (ULONG) s->ss, s->ssorient, mark(*s));
   sdecode(s->ss[0], printsh);
   if (printsh.ss == m->dummysub) {
     printf("    [0] = No subsegment\n");
   } else {
-    printf("    [0] = x%lx  %d\n", (ULONG) printsh.ss,
+    printf("    [0] = x%llx  %lld\n", (ULONG) printsh.ss,
            printsh.ssorient);
   }
   sdecode(s->ss[1], printsh);
   if (printsh.ss == m->dummysub) {
     printf("    [1] = No subsegment\n");
   } else {
-    printf("    [1] = x%lx  %d\n", (ULONG) printsh.ss,
+    printf("    [1] = x%llx  %lld\n", (ULONG) printsh.ss,
            printsh.ssorient);
   }
 
   sorg(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Origin[%d] = NULL\n", 2 + s->ssorient);
+    printf("    Origin[%lld] = NULL\n", 2 + s->ssorient);
   else
-    printf("    Origin[%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Origin[%lld] = x%llx  (%.12g, %.12g)\n",
            2 + s->ssorient, (ULONG) printvertex,
            printvertex[0], printvertex[1]);
   sdest(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Dest  [%d] = NULL\n", 3 - s->ssorient);
+    printf("    Dest  [%lld] = NULL\n", 3 - s->ssorient);
   else
-    printf("    Dest  [%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Dest  [%lld] = x%llx  (%.12g, %.12g)\n",
            3 - s->ssorient, (ULONG) printvertex,
            printvertex[0], printvertex[1]);
 
@@ -3818,29 +3818,29 @@ struct osub *s;
   if (printtri.tri == m->dummytri) {
     printf("    [6] = Outer space\n");
   } else {
-    printf("    [6] = x%lx  %d\n", (ULONG) printtri.tri,
+    printf("    [6] = x%llx  %lld\n", (ULONG) printtri.tri,
            printtri.orient);
   }
   decode(s->ss[7], printtri);
   if (printtri.tri == m->dummytri) {
     printf("    [7] = Outer space\n");
   } else {
-    printf("    [7] = x%lx  %d\n", (ULONG) printtri.tri,
+    printf("    [7] = x%llx  %lld\n", (ULONG) printtri.tri,
            printtri.orient);
   }
 
   segorg(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Segment origin[%d] = NULL\n", 4 + s->ssorient);
+    printf("    Segment origin[%lld] = NULL\n", 4 + s->ssorient);
   else
-    printf("    Segment origin[%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Segment origin[%lld] = x%llx  (%.12g, %.12g)\n",
            4 + s->ssorient, (ULONG) printvertex,
            printvertex[0], printvertex[1]);
   segdest(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Segment dest  [%d] = NULL\n", 5 - s->ssorient);
+    printf("    Segment dest  [%lld] = NULL\n", 5 - s->ssorient);
   else
-    printf("    Segment dest  [%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Segment dest  [%lld] = x%llx  (%.12g, %.12g)\n",
            5 - s->ssorient, (ULONG) printvertex,
            printvertex[0], printvertex[1]);
 }
@@ -9776,7 +9776,7 @@ struct otri *farright;
   INT divider;
 
   if (b->verbose > 2) {
-    printf("  Triangulating %d vertices.\n", vertices);
+    printf("  Triangulating %lld vertices.\n", vertices);
   }
   if (vertices == 2) {
     /* The triangulation of two vertices is an edge.  An edge is */
@@ -9910,7 +9910,7 @@ struct otri *farright;
     divconqrecurse(m, b, &sortarray[divider], vertices - divider, 1 - axis,
                    &innerright, farright);
     if (b->verbose > 1) {
-      printf("  Joining triangulations with %d and %d vertices.\n", divider,
+      printf("  Joining triangulations with %lld and %lld vertices.\n", divider,
              vertices - divider);
     }
     /* Merge the two triangulations into one. */
@@ -11306,7 +11306,7 @@ FILE *polyfile;
       corner[j] = trianglelist[vertexindex++];
       if ((corner[j] < b->firstnumber) ||
           (corner[j] >= b->firstnumber + m->invertices)) {
-        printf("Error:  Triangle %ld has an invalid vertex index.\n",
+        printf("Error:  Triangle %lld has an invalid vertex index.\n",
                elementnumber);
         triexit(1);
       }
@@ -11488,7 +11488,7 @@ FILE *polyfile;
       for (j = 0; j < 2; j++) {
         if ((end[j] < b->firstnumber) ||
             (end[j] >= b->firstnumber + m->invertices)) {
-          printf("Error:  Segment %ld has an invalid vertex index.\n", 
+          printf("Error:  Segment %lld has an invalid vertex index.\n", 
                  segmentnumber);
           triexit(1);
         }
@@ -12534,13 +12534,13 @@ char *polyfilename;
       if ((end1 < b->firstnumber) ||
           (end1 >= b->firstnumber + m->invertices)) {
         if (!b->quiet) {
-          printf("Warning:  Invalid first endpoint of segment %d in %s.\n",
+          printf("Warning:  Invalid first endpoint of segment %lld in %s.\n",
                  b->firstnumber + i, polyfilename);
         }
       } else if ((end2 < b->firstnumber) ||
                  (end2 >= b->firstnumber + m->invertices)) {
         if (!b->quiet) {
-          printf("Warning:  Invalid second endpoint of segment %d in %s.\n",
+          printf("Warning:  Invalid second endpoint of segment %lld in %s.\n",
                  b->firstnumber + i, polyfilename);
         }
       } else {
@@ -12549,7 +12549,7 @@ char *polyfilename;
         endpoint2 = getvertex(m, b, end2);
         if ((endpoint1[0] == endpoint2[0]) && (endpoint1[1] == endpoint2[1])) {
           if (!b->quiet) {
-            printf("Warning:  Endpoints of segment %d are coincident in %s.\n",
+            printf("Warning:  Endpoints of segment %lld are coincident in %s.\n",
                    b->firstnumber + i, polyfilename);
           }
         } else {
@@ -13700,7 +13700,7 @@ struct behavior *b;
       printf("  one encroached subsegment, and therefore might not be truly\n"
              );
     } else {
-      printf("  %ld encroached subsegments, and therefore might not be truly\n"
+      printf("  %lld encroached subsegments, and therefore might not be truly\n"
              , m->badsubsegs.items);
     }
     printf("  Delaunay.  If the Delaunay property is important to you,\n");
@@ -15249,7 +15249,7 @@ char **argv;
     nlist[index++] = neighbor3;
 #else /* not TRILIBRARY */
     /* Triangle number, neighboring triangle numbers. */
-    fprintf(outfile, "%4ld    %d  %d  %d\n", elementnumber,
+    fprintf(outfile, "%4ld    %lld  %lld  %lld\n", elementnumber,
             neighbor1, neighbor2, neighbor3);
 #endif /* not TRILIBRARY */
 
@@ -15527,15 +15527,15 @@ struct behavior *b;
          minaltitude, worstaspect);
 
   printf("  Triangle aspect ratio histogram:\n");
-  printf("  1.1547 - %-6.6g    :  %8d    | %6.6g - %-6.6g     :  %8d\n",
+  printf("  1.1547 - %-6.6g    :  %8lld    | %6.6g - %-6.6g     :  %8lld\n",
          ratiotable[0], aspecttable[0], ratiotable[7], ratiotable[8],
          aspecttable[8]);
   for (i = 1; i < 7; i++) {
-    printf("  %6.6g - %-6.6g    :  %8d    | %6.6g - %-6.6g     :  %8d\n",
+    printf("  %6.6g - %-6.6g    :  %8lld    | %6.6g - %-6.6g     :  %8lld\n",
            ratiotable[i - 1], ratiotable[i], aspecttable[i],
            ratiotable[i + 7], ratiotable[i + 8], aspecttable[i + 8]);
   }
-  printf("  %6.6g - %-6.6g    :  %8d    | %6.6g -            :  %8d\n",
+  printf("  %6.6g - %-6.6g    :  %8lld    | %6.6g -            :  %8lld\n",
          ratiotable[6], ratiotable[7], aspecttable[7], ratiotable[14],
          aspecttable[15]);
   printf("  (Aspect ratio is longest edge divided by shortest altitude)\n\n");
@@ -15545,7 +15545,7 @@ struct behavior *b;
 
   printf("  Angle histogram:\n");
   for (i = 0; i < 9; i++) {
-    printf("    %3d - %3d degrees:  %8d    |    %3d - %3d degrees:  %8d\n",
+    printf("    %3lld - %3lld degrees:  %8lld    |    %3lld - %3lld degrees:  %8lld\n",
            i * 10, i * 10 + 10, angletable[i],
            i * 10 + 90, i * 10 + 100, angletable[i + 9]);
   }
@@ -15568,25 +15568,25 @@ struct behavior *b;
 
 {
   printf("\nStatistics:\n\n");
-  printf("  Input vertices: %d\n", m->invertices);
+  printf("  Input vertices: %lld\n", m->invertices);
   if (b->refine) {
-    printf("  Input triangles: %d\n", m->inelements);
+    printf("  Input triangles: %lld\n", m->inelements);
   }
   if (b->poly) {
-    printf("  Input segments: %d\n", m->insegments);
+    printf("  Input segments: %lld\n", m->insegments);
     if (!b->refine) {
-      printf("  Input holes: %d\n", m->holes);
+      printf("  Input holes: %lld\n", m->holes);
     }
   }
 
-  printf("\n  Mesh vertices: %ld\n", m->vertices.items - m->undeads);
-  printf("  Mesh triangles: %ld\n", m->triangles.items);
-  printf("  Mesh edges: %ld\n", m->edges);
-  printf("  Mesh exterior boundary edges: %ld\n", m->hullsize);
+  printf("\n  Mesh vertices: %lld\n", m->vertices.items - m->undeads);
+  printf("  Mesh triangles: %lld\n", m->triangles.items);
+  printf("  Mesh edges: %lld\n", m->edges);
+  printf("  Mesh exterior boundary edges: %lld\n", m->hullsize);
   if (b->poly || b->refine) {
-    printf("  Mesh interior boundary edges: %ld\n",
+    printf("  Mesh interior boundary edges: %lld\n",
            m->subsegs.items - m->hullsize);
-    printf("  Mesh subsegments (constrained edges): %ld\n",
+    printf("  Mesh subsegments (constrained edges): %lld\n",
            m->subsegs.items);
   }
   printf("\n");
@@ -15594,31 +15594,31 @@ struct behavior *b;
   if (b->verbose) {
     quality_statistics(m, b);
     printf("Memory allocation statistics:\n\n");
-    printf("  Maximum number of vertices: %ld\n", m->vertices.maxitems);
-    printf("  Maximum number of triangles: %ld\n", m->triangles.maxitems);
+    printf("  Maximum number of vertices: %lld\n", m->vertices.maxitems);
+    printf("  Maximum number of triangles: %lld\n", m->triangles.maxitems);
     if (m->subsegs.maxitems > 0) {
-      printf("  Maximum number of subsegments: %ld\n", m->subsegs.maxitems);
+      printf("  Maximum number of subsegments: %lld\n", m->subsegs.maxitems);
     }
     if (m->viri.maxitems > 0) {
-      printf("  Maximum number of viri: %ld\n", m->viri.maxitems);
+      printf("  Maximum number of viri: %lld\n", m->viri.maxitems);
     }
     if (m->badsubsegs.maxitems > 0) {
-      printf("  Maximum number of encroached subsegments: %ld\n",
+      printf("  Maximum number of encroached subsegments: %lld\n",
              m->badsubsegs.maxitems);
     }
     if (m->badtriangles.maxitems > 0) {
-      printf("  Maximum number of bad triangles: %ld\n",
+      printf("  Maximum number of bad triangles: %lld\n",
              m->badtriangles.maxitems);
     }
     if (m->flipstackers.maxitems > 0) {
-      printf("  Maximum number of stacked triangle flips: %ld\n",
+      printf("  Maximum number of stacked triangle flips: %lld\n",
              m->flipstackers.maxitems);
     }
     if (m->splaynodes.maxitems > 0) {
-      printf("  Maximum number of splay tree nodes: %ld\n",
+      printf("  Maximum number of splay tree nodes: %lld\n",
              m->splaynodes.maxitems);
     }
-    printf("  Approximate heap memory use (bytes): %ld\n\n",
+    printf("  Approximate heap memory use (bytes): %lld\n\n",
            m->vertices.maxitems * m->vertices.itembytes +
            m->triangles.maxitems * m->triangles.itembytes +
            m->subsegs.maxitems * m->subsegs.itembytes +
@@ -15630,21 +15630,21 @@ struct behavior *b;
 
     printf("Algorithmic statistics:\n\n");
     if (!b->weighted) {
-      printf("  Number of incircle tests: %ld\n", m->incirclecount);
+      printf("  Number of incircle tests: %lld\n", m->incirclecount);
     } else {
-      printf("  Number of 3D orientation tests: %ld\n", m->orient3dcount);
+      printf("  Number of 3D orientation tests: %lld\n", m->orient3dcount);
     }
-    printf("  Number of 2D orientation tests: %ld\n", m->counterclockcount);
+    printf("  Number of 2D orientation tests: %lld\n", m->counterclockcount);
     if (m->hyperbolacount > 0) {
-      printf("  Number of right-of-hyperbola tests: %ld\n",
+      printf("  Number of right-of-hyperbola tests: %lld\n",
              m->hyperbolacount);
     }
     if (m->circletopcount > 0) {
-      printf("  Number of circle top computations: %ld\n",
+      printf("  Number of circle top computations: %lld\n",
              m->circletopcount);
     }
     if (m->circumcentercount > 0) {
-      printf("  Number of triangle circumcenter computations: %ld\n",
+      printf("  Number of triangle circumcenter computations: %lld\n",
              m->circumcentercount);
     }
     printf("\n");
