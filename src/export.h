@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined cork_EXPORTS
+#if defined libcork_EXPORTS
 #	if defined _WIN32 || defined _WIN64
 #		if defined(_MSC_VER)
 #			define CORK_API __declspec( dllexport )
