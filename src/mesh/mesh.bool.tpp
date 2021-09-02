@@ -342,6 +342,24 @@ void Mesh<VertData,TriData>::boolIsct(Mesh &rhs)
 }
 
 template<class VertData, class TriData>
+void Mesh<VertData,TriData>::boolIsctShell(Mesh &rhs)
+{
+    BoolProblem bprob(this);
+    
+    bprob.doSetup(rhs);
+    
+    bprob.doDeleteAndFlip([](byte data) -> typename BoolProblem::TriCode {
+        if(data == 2 ||         // part of op 0 INSIDE op 1
+           data == 1)           // part of op 1 OUTSIDE op 0
+            return BoolProblem::DELETE_TRI;
+        else if(data == 3)      // part of op 1 INSIDE op 1
+            return BoolProblem::DELETE_TRI;
+        else                    // part of op 0 OUTSIDE op 1
+            return BoolProblem::KEEP_TRI;
+    });
+}
+
+template<class VertData, class TriData>
 void Mesh<VertData,TriData>::boolXor(Mesh &rhs)
 {
     BoolProblem bprob(this);

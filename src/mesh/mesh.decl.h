@@ -211,6 +211,7 @@ public: // BOOLean operation module
     void boolUnion(Mesh &rhs);
     void boolDiff(Mesh &rhs);
     void boolIsct(Mesh &rhs);
+	void boolIsctShell(Mesh &rhs);
     void boolXor(Mesh &rhs);
     
 private:    // Internal Formats

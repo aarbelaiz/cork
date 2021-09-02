@@ -74,3 +74,5 @@ void CORK_API computeSymmetricDifference(
 //  such that the two surfaces are now connected.
 void CORK_API resolveIntersections(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh *out);
 
+// Not a Boolean operation, returns an open surface with the in0 mesh intersected by in1
+void CORK_API computeIntersectionOpen(CorkTriMesh in0, CorkTriMesh in1, CorkTriMesh* out);
