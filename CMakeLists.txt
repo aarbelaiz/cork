@@ -119,3 +119,4 @@ install(EXPORT cork_EXPORT DESTINATION cmake NAMESPACE ${PROJ_NAME}:: FILE ${PRO
 # We create a config file that makes use of the exported targets
 configure_file(${PROJ_NAME}Config.cmake.in ${PROJ_NAME}Config.cmake @ONLY)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJ_NAME}Config.cmake DESTINATION cmake)
+install(FILES cmake/FindGMP.cmake DESTINATION cmake/)
