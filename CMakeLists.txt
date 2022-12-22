@@ -60,7 +60,8 @@ foreach(_include_dir IN LISTS INCLUDE_DIRS)
    list(APPEND ALL_BUILD_INCLUDE_DIRS $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${_include_dir}>)
 endforeach()
 
-target_include_directories(libcork PUBLIC ${GMP_INCLUDE_DIRS} ${ALL_BUILD_INCLUDE_DIRS} $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_include_directories(libcork PUBLIC ${ALL_BUILD_INCLUDE_DIRS} $<INSTALL_INTERFACE:include>)
+target_include_directories(libcork PRIVATE ${GMP_INCLUDE_DIRS})
 
 target_compile_definitions(libcork PRIVATE -DNO_TIMER -DREDUCED -DTRILIBRARY -DANSI_DECLARATORS)
 
@@ -68,7 +69,7 @@ if(UNIX)
     target_compile_options(libcork PRIVATE -fPIC -fvisibility=hidden)
 endif()
 
-target_link_libraries(libcork PUBLIC ${GMP_LIBRARIES})
+target_link_libraries(libcork PRIVATE ${GMP_LIBRARIES})
 
 # --
 
@@ -109,7 +110,7 @@ install(TARGETS libcork
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
-    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    INCLUDES DESTINATION include
 )
 install(FILES src/cork.h DESTINATION include)
 
